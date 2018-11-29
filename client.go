@@ -76,7 +76,7 @@ func listCSPAccounts() {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 3, ' ', 0)
 	fmt.Fprintf(w, format, "ID", "Type", "Name", "Created at")
 	for _, a := range resp.CSPAccounts {
-		fmt.Fprintf(w, format, a.ID, a.CspAccountType, a.AccountDisplayName, a.CreatedAt)
+		fmt.Fprintf(w, format, a.ID, a.CSPAccountType, a.AccountDisplayName, a.CreatedAt)
 	}
 	w.Flush()
 }
