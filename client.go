@@ -33,6 +33,8 @@ func main() {
 		listServers()
 	case "firewall_policies":
 		listFirewallPolicies()
+	case "csp_accounts":
+		listCSPAccounts()
 	case "firewall_rules":
 		if len(os.Args) < 3 {
 			help("please provide ID of firewall policy")
@@ -54,6 +56,29 @@ func help(extra ...string) {
 	for _, e := range extra {
 		fmt.Println(e)
 	}
+}
+
+func listCSPAccounts() {
+	format := "%s\t%s\t%s\t%s\t\n"
+
+	resp, err := client.ListCSPAccounts()
+
+	if err != nil {
+		log.Fatalf("failed to get CSP accounts: %v", err)
+	}
+
+	if resp.Count == 0 {
+		fmt.Println("no CSP accounts found")
+		return
+	}
+
+	log.Printf("found %d CSP accounts", resp.Count)
+	w := tabwriter.NewWriter(os.Stdout, 0, 0, 3, ' ', 0)
+	fmt.Fprintf(w, format, "ID", "Type", "Name", "Created at")
+	for _, a := range resp.CSPAccounts {
+		fmt.Fprintf(w, format, a.ID, a.CspAccountType, a.AccountDisplayName, a.CreatedAt)
+	}
+	w.Flush()
 }
 
 func listServerGroups() {
