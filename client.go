@@ -35,6 +35,8 @@ func main() {
 		listFirewallPolicies()
 	case "csp_accounts":
 		listCSPAccounts()
+	case "alert_profiles":
+		listAlertProfiles()
 	case "firewall_rules":
 		if len(os.Args) < 3 {
 			help("please provide ID of firewall policy")
@@ -166,6 +168,28 @@ func listFirewallRules(ID string) {
 	fmt.Fprintf(w, "%s\t%s\t%s\t%s\t\n", "ID", "Chain", "Action", "Active")
 	for _, r := range resp.Rules {
 		fmt.Fprintf(w, format, r.ID, r.Chain, r.Action, r.Active)
+	}
+	w.Flush()
+}
+
+func listAlertProfiles() {
+	format := "%s\t%s\t\n"
+	resp, err := client.ListAlertProfiles()
+
+	if err != nil {
+		log.Fatalf("failed to get alert profiles: %v", err)
+	}
+
+	if resp.Count == 0 {
+		fmt.Println("no alert profiles found")
+		return
+	}
+
+	log.Printf("found %d alert profiles", resp.Count)
+	w := tabwriter.NewWriter(os.Stdout, 0, 0, 3, ' ', 0)
+	fmt.Fprintf(w, format, "ID", "Name")
+	for _, p := range resp.AlertProfiles {
+		fmt.Fprintf(w, format, p.ID, p.Name)
 	}
 	w.Flush()
 }
