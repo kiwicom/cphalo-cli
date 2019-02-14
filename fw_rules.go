@@ -72,7 +72,7 @@ func listFirewallRules(policyID string) {
 
 func deleteFirewallRule(policyID, ruleID string) error {
 	if err := client.DeleteFirewallRule(policyID, ruleID); err != nil {
-		return fmt.Errorf("could not delete firewall rule: %v\n", err)
+		return fmt.Errorf("could not delete firewall rule: %v", err)
 	}
 
 	fmt.Printf("Rule %s deleted.\n", ruleID)
