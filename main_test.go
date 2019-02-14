@@ -2,7 +2,7 @@ package main
 
 import "os"
 
-func ExampleHelp() {
+func Example_main() {
 	os.Setenv("CP_APPLICATION_KEY", "test")
 	os.Setenv("CP_APPLICATION_SECRET", "test")
 	main()
