@@ -1,0 +1,56 @@
+image: golang:latest
+
+stages:
+- test
+- build
+
+cache:
+  key: $CI_PROJECT_PATH_SLUG-$CI_COMMIT_REF_NAME
+  paths:
+  - $GOPATH/pkg/mod
+
+variables:
+  DOCKER_DRIVER: overlay2
+  CGO_ENABLED: "0"
+  GOPATH: $CI_PROJECT_DIR/.cache
+
+linting:
+  stage: test
+  image: golangci/golangci-lint
+  script:
+    - go mod download
+    - golangci-lint run
+
+golint:
+  stage: test
+  before_script:
+    - export PATH="${GOPATH}/bin:${PATH}"
+    - go get golang.org/x/lint/golint
+  script:
+    - go mod download
+    - golint -set_exit_status
+
+build-binary:
+  stage: build
+  script:
+  - CGO_ENABLED=0 go build -ldflags '-w -s' -o bin/cphalo .
+  artifacts:
+    paths:
+    - bin/
+    expire_in: 1 hour
+
+build-container:
+  stage: release
+  cache: {}
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker pull "$CI_REGISTRY_IMAGE:latest" || true
+    - docker build --cache-from "$CI_REGISTRY_IMAGE:latest" -t "$CI_REGISTRY_IMAGE:latest" -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - docker push "$CI_REGISTRY_IMAGE:latest"
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  only:
+    - master
