@@ -11,7 +11,7 @@ import (
 
 var (
 	client  *cphalo.Client
-	cmdName = "cphalocli"
+	cmdName = "cphalo"
 
 	cpAppKey    string
 	cpAppSecret string
