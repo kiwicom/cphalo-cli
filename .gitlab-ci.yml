@@ -15,6 +15,19 @@ variables:
   CGO_ENABLED: "0"
   GOPATH: $CI_PROJECT_DIR/.cache
 
+tests:
+  stage: test
+  script:
+  - go test -v -cover .
+
+tests-alpine:
+  image: golang:alpine
+  stage: test
+  before_script:
+    - apk add --update git
+  script:
+    - go test .
+
 linting:
   stage: test
   image: golangci/golangci-lint

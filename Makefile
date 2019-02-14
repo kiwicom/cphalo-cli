@@ -1,4 +1,13 @@
-.PHONY: build lint golint help
+.PHONY: test coverage build lint golint help
+
+#? test: run tests
+test:
+	go test -v .
+
+#? coverage: run tests with coverage report
+coverage:
+	go test -cover .
+
 
 #? build: compile binary
 build:
