@@ -1,13 +1,14 @@
 image: golang:latest
 
 stages:
-- test
-- build
+  - test
+  - build
+  - release
 
 cache:
   key: $CI_PROJECT_PATH_SLUG-$CI_COMMIT_REF_NAME
   paths:
-  - $GOPATH/pkg/mod
+    - $GOPATH/pkg/mod
 
 variables:
   DOCKER_DRIVER: overlay2
@@ -33,7 +34,7 @@ golint:
 build-binary:
   stage: build
   script:
-  - CGO_ENABLED=0 go build -ldflags '-w -s' -o bin/cphalo .
+    - CGO_ENABLED=0 go build -ldflags '-w -s' -o bin/cphalo .
   artifacts:
     paths:
     - bin/
