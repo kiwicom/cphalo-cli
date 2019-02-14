@@ -3,14 +3,14 @@ package main
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	"gitlab.skypicker.com/terraform-provider-cphalo/api"
+	"gitlab.com/kiwicom/cphalo-go"
 	"io/ioutil"
 	"log"
 	"os"
 )
 
 var (
-	client  *api.Client
+	client  *cphalo.Client
 	cmdName = "cphalocli"
 
 	cpAppKey    string
@@ -30,7 +30,7 @@ func main() {
 		return
 	}
 
-	client = api.NewClient(cpAppKey, cpAppSecret)
+	client = cphalo.NewClient(cpAppKey, cpAppSecret)
 
 	cobra.OnInitialize(setupLogging)
 

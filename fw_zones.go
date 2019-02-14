@@ -52,7 +52,7 @@ func listFirewallZones() {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 3, ' ', 0)
 	fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\t\n", "ID", "Name", "IP", "Description", "Permanent")
 	for _, p := range resp.Zones {
-		fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%t\t\n", p.ID, p.Name, p.IpAddress, p.Description, p.System)
+		fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%t\t\n", p.ID, p.Name, p.IPAddress, p.Description, p.System)
 	}
 	w.Flush()
 }
