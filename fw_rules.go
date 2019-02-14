@@ -32,7 +32,9 @@ func init() {
 		Short: "Delete a firewall rule for a specific policy",
 		Args:  cobra.ExactArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
-			deleteFirewallRule(args[0], args[1])
+			if err := deleteFirewallRule(args[0], args[1]); err != nil {
+				log.Fatalf("Failed to delete firewall rule: %v", err)
+			}
 		},
 	})
 

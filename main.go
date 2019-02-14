@@ -48,7 +48,9 @@ func main() {
 		cmdFirewallZones,
 	)
 
-	rootCmd.Execute()
+	if err := rootCmd.Execute(); err != nil {
+		log.Fatalf("Failed to execute root command: %v", err)
+	}
 }
 
 func setupLogging() {
