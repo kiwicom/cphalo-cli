@@ -30,7 +30,7 @@ func main() {
 		return
 	}
 
-	client = cphalo.NewClient(cpAppKey, cpAppSecret)
+	client = cphalo.NewClient(cpAppKey, cpAppSecret, nil)
 
 	cobra.OnInitialize(setupLogging)
 
