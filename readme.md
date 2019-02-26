@@ -46,6 +46,32 @@ You can also change the path of config:
 cphalo config --path=/some/other/config.yaml
 ```
 
+## Authenticating
+
+**CPHalo CLI** tools supports 3 different types of authentication in this order:
+
+### Via flag
+
+```bash
+cphalo --key=my-key --secret=my-secret
+```
+
+### Via ENV
+
+```bash
+export CPHALO_APPLICATION_KEY=key
+export CPHALO_APPLICATION_SECRET=secret
+```
+
+### Via config file
+
+It checks for presence of config file in **home dir** and in **current directory**.
+
+```yaml
+application_key: key
+application_secret: secret
+```
+
 ## Supported command
 
 To check which commands are support just use `help`:
