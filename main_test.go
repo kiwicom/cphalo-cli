@@ -26,9 +26,9 @@ func Example_main() {
 	//   servers             Manage servers
 	//
 	//Flags:
-	//       --config string   config file (default is $HOME/.cphalo.yaml)
 	//   -h, --help            help for cphalo
 	//       --key string      Application key
+	//       --path string     config file (default is $HOME/.cphalo.yaml)
 	//       --secret string   Application secret
 	//
 	//Use "cphalo [command] --help" for more information about a command.

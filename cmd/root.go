@@ -57,7 +57,7 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cphalo.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "path", "", "config file (default is $HOME/.cphalo.yaml)")
 	rootCmd.PersistentFlags().String("key", "", "Application key")
 	rootCmd.PersistentFlags().String("secret", "", "Application secret")
 
