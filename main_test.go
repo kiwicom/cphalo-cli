@@ -3,8 +3,8 @@ package main
 import "os"
 
 func Example_main() {
-	os.Setenv("CP_APPLICATION_KEY", "test")
-	os.Setenv("CP_APPLICATION_SECRET", "test")
+	os.Setenv("CPHALO_APPLICATION_KEY", "test")
+	os.Setenv("CPHALO_APPLICATION_SECRET", "test")
 	main()
 
 	//Output:Usage:

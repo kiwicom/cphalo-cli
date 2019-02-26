@@ -21,13 +21,13 @@ var (
 )
 
 func main() {
-	if cpAppKey = os.Getenv("CP_APPLICATION_KEY"); cpAppKey == "" {
-		fmt.Println("Environment variable CP_APPLICATION_KEY must be set.")
+	if cpAppKey = os.Getenv("CPHALO_APPLICATION_KEY"); cpAppKey == "" {
+		fmt.Println("Environment variable CPHALO_APPLICATION_KEY must be set.")
 		return
 	}
 
-	if cpAppSecret = os.Getenv("CP_APPLICATION_SECRET"); cpAppSecret == "" {
-		fmt.Println("Environment variable CP_APPLICATION_SECRET must be set.")
+	if cpAppSecret = os.Getenv("CPHALO_APPLICATION_SECRET"); cpAppSecret == "" {
+		fmt.Println("Environment variable CPHALO_APPLICATION_SECRET must be set.")
 		return
 	}
 
