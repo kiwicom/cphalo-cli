@@ -14,16 +14,8 @@ A command line tool for accessing CloudPassage Halo API
 
 ### Install
 
-**Download code**
-
 ```bash
 go get gitlab.com/kiwicom/cphalo-cli
-```
-
-**Install tool**
-
-```bash
-go install gitlab.com/kiwicom/cphalo-cli
 ```
 
 ### Configure credentials
@@ -31,19 +23,19 @@ go install gitlab.com/kiwicom/cphalo-cli
 Following command will ask you about credentials and save them to `~.cphalo.yaml` file.
 
 ```bash
-cphalo config
+cphalo-cli config
 ```
 
 Headless usage
 
 ```bash
-cphalo config --key=my-key --secret=my-secret
+cphalo-cli config --key=my-key --secret=my-secret
 ```
 
 You can also change the path of config:
 
 ```bash
-cphalo config --path=/some/other/config.yaml
+cphalo-cli config --path=/some/other/config.yaml
 ```
 
 ## Authenticating
@@ -53,7 +45,7 @@ cphalo config --path=/some/other/config.yaml
 ### Via flag
 
 ```bash
-cphalo --key=my-key --secret=my-secret
+cphalo-cli --key=my-key --secret=my-secret
 ```
 
 ### Via ENV
@@ -77,7 +69,7 @@ application_secret: secret
 To check which commands are support just use `help`:
 
 ```bash
-cphalo -h
+cphalo-cli -h
 ``` 
 
 ## Docker usage
