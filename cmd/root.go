@@ -11,6 +11,8 @@ import (
 var (
 	cfgFile string
 	client  *cphalo.Client
+
+	configName = ".cphalo"
 )
 
 var rootCmd = &cobra.Command{
@@ -35,6 +37,7 @@ var rootCmd = &cobra.Command{
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
 	rootCmd.AddCommand(
+		cmdConfig,
 		cmdServerGroups,
 		cmdServers,
 		cmdCspAccounts,
@@ -75,7 +78,7 @@ func initConfig() {
 			log.Fatal(err)
 		}
 
-		viper.SetConfigName(".cphalo")
+		viper.SetConfigName(configName)
 		viper.AddConfigPath(home)
 		viper.AddConfigPath(".")
 	}

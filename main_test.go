@@ -14,6 +14,7 @@ func Example_main() {
 	//
 	//Available Commands:
 	//   alert-profiles      Manage alert profiles
+	//   config              Prepare configuration file
 	//   csp-accounts        Manage CSP accounts
 	//   firewall-interfaces Manage firewall interfaces
 	//   firewall-policies   Manage firewall policies
