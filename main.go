@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
-	"gitlab.com/kiwicom/cphalo-go"
 	"io/ioutil"
 	"log"
 	"os"
+
+	"github.com/spf13/cobra"
+	"gitlab.com/kiwicom/cphalo-go"
 )
 
 var (

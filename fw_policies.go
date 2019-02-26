@@ -3,11 +3,12 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"github.com/spf13/cobra"
 	"log"
 	"os"
 	"strings"
 	"text/tabwriter"
+
+	"github.com/spf13/cobra"
 )
 
 var (

@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
 	"log"
 	"os"
 	"text/tabwriter"
+
+	"github.com/spf13/cobra"
 )
 
 var (
