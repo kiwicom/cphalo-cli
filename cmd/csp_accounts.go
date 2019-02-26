@@ -1,11 +1,11 @@
-package main
+package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"text/tabwriter"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
@@ -62,7 +62,7 @@ func listCSPAccounts() {
 
 func deleteCSPAccount(accountID string) {
 	if err := client.DeleteCSPAccount(accountID); err != nil {
-		fmt.Printf("Aborting. Could not delete CSP account: %v\n", err)
+		log.Errorf("Aborting. Could not delete CSP Account: %v\n", err)
 		return
 	}
 

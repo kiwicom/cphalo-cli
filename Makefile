@@ -1,13 +1,17 @@
 .PHONY: test coverage build lint golint help
 
+TMP:=.tmp
+MAKE_TMP:=$(shell mkdir -p $(TMP))
+
+COVERAGE_FILE:=$(TMP)/test-coverage.txt
+
 #? test: run tests
 test:
-	go test -v .
+	go test $(shell go list ./... | grep -v /.tmp/ ) -v -coverprofile ${COVERAGE_FILE}
 
 #? coverage: run tests with coverage report
-coverage:
-	go test -cover .
-
+coverage: test
+	go tool cover -func=${COVERAGE_FILE}
 
 #? build: compile binary
 build:

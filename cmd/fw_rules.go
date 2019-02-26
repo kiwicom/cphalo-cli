@@ -1,11 +1,11 @@
-package main
+package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"text/tabwriter"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
@@ -90,7 +90,7 @@ func deleteAllFirewallRules(policyID string) {
 
 	for _, rule := range resp.Rules {
 		if err = deleteFirewallRule(policyID, rule.ID); err != nil {
-			fmt.Printf("Aborting: %v\n", err)
+			log.Errorf("Aborting. Could not delete firewall rule: %v\n", err)
 			return
 		}
 

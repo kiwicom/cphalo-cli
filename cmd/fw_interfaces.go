@@ -1,11 +1,11 @@
-package main
+package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"text/tabwriter"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
@@ -60,7 +60,7 @@ func listFirewallInterfaces() {
 
 func deleteFirewallInterface(interfaceID string) {
 	if err := client.DeleteFirewallInterface(interfaceID); err != nil {
-		fmt.Printf("Aborting. Could not delete firewall interface: %v\n", err)
+		log.Errorf("Aborting. Could not delete firewall interface: %v\n", err)
 		return
 	}
 

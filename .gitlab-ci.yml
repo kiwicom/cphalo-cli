@@ -13,12 +13,12 @@ cache:
 variables:
   DOCKER_DRIVER: overlay2
   CGO_ENABLED: "0"
-  GOPATH: $CI_PROJECT_DIR/.cache
+  GOPATH: $CI_PROJECT_DIR/.tmp/go
 
 tests:
   stage: test
   script:
-  - go test -v -cover .
+  - make coverage
 
 tests-alpine:
   image: golang:alpine

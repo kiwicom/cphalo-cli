@@ -1,11 +1,11 @@
-package main
+package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"text/tabwriter"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
@@ -60,7 +60,7 @@ func listFirewallZones() {
 
 func deleteFirewallZone(zoneID string) {
 	if err := client.DeleteFirewallZone(zoneID); err != nil {
-		fmt.Printf("Aborting. Could not delete firewall zone: %v\n", err)
+		log.Errorf("Aborting. Could not delete firewall zone: %v\n", err)
 		return
 	}
 

@@ -1,13 +1,13 @@
-package main
+package cmd
 
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 	"strings"
 	"text/tabwriter"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
@@ -83,7 +83,7 @@ func deleteFirewallPolicy(policyID string) {
 
 		for _, rule := range resp.Rules {
 			if err = client.DeleteFirewallRule(policyID, rule.ID); err != nil {
-				fmt.Printf("Aborting. Could not delete firewall rule: %v\n", err)
+				log.Errorf("Aborting. Could not delete firewall rule: %v\n", err)
 				return
 			}
 
@@ -92,7 +92,7 @@ func deleteFirewallPolicy(policyID string) {
 	}
 
 	if err = client.DeleteFirewallPolicy(policyID); err != nil {
-		fmt.Printf("Could not delete firewall policy: %v\n", err)
+		log.Errorf("Aborting. Could not delete firewall policy: %v\n", err)
 	} else {
 		fmt.Printf("Policy %s deleted.\n", policyID)
 	}

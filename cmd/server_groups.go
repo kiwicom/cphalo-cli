@@ -1,11 +1,11 @@
-package main
+package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"text/tabwriter"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
@@ -51,7 +51,7 @@ func listServerGroups() {
 		return
 	}
 
-	log.Printf("found %d server groups", resp.Count)
+	fmt.Printf("found %d server groups\n", resp.Count)
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 3, ' ', 0)
 	fmt.Fprintf(w, format, "ID", "Name", "ParentID")
 	for _, sg := range resp.Groups {
@@ -62,7 +62,7 @@ func listServerGroups() {
 
 func deleteServerGroup(groupID string) {
 	if err := client.DeleteFirewallZone(groupID); err != nil {
-		fmt.Printf("Aborting. Could not delete server group: %v\n", err)
+		log.Errorf("Aborting. Could not delete server group: %v\n", err)
 		return
 	}
 

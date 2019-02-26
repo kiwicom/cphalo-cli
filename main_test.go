@@ -7,7 +7,9 @@ func Example_main() {
 	os.Setenv("CPHALO_APPLICATION_SECRET", "test")
 	main()
 
-	//Output:Usage:
+	//Output: CLI tool for connection to CPHalo API
+	//
+	// Usage:
 	//   cphalo [command]
 	//
 	//Available Commands:
@@ -23,9 +25,10 @@ func Example_main() {
 	//   servers             Manage servers
 	//
 	//Flags:
-	//   -h, --help      help for cphalo
-	//       --verbose   Output verbose information
+	//       --config string   config file (default is $HOME/.cphalo.yaml)
+	//   -h, --help            help for cphalo
+	//       --key string      Application key
+	//       --secret string   Application secret
 	//
 	//Use "cphalo [command] --help" for more information about a command.
-
 }

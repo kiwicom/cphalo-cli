@@ -1,11 +1,11 @@
-package main
+package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"text/tabwriter"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
@@ -60,7 +60,7 @@ func listFirewallServices() {
 
 func deleteFirewallService(serviceID string) {
 	if err := client.DeleteFirewallService(serviceID); err != nil {
-		fmt.Printf("Aborting. Could not delete firewall service: %v\n", err)
+		log.Errorf("Aborting. Could not delete firewall service: %v\n", err)
 		return
 	}
 
